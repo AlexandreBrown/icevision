@@ -51,7 +51,8 @@ class EncodedRLEs(Mask):
 
     def to_mask(self, h, w) -> "MaskArray":
         mask = mask_utils.decode(self.erles)
-        mask = mask.transpose(2, 0, 1)  # channels first
+        print(f"mask.shape : {mask.shape}")
+        mask = mask.transpose(2, 0, 1)  # (h, w, c) to (c, h, w)
         return MaskArray(mask)
 
     def to_erles(self, h, w) -> "EncodedRLEs":
